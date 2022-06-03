@@ -1,6 +1,6 @@
-import logo from './logo.svg';
-import './App.css';
-import React from 'react';
+// import logo from './logo.svg';
+// import './App.css';
+import React, { useState, useEffect } from 'react';
 
 function App() {
   const [color, setColor] = React.useState(
@@ -11,59 +11,57 @@ const [count, setCount] = React.useState(
   );
 
   React.useEffect(() => {
-    sessionStorage.setItem("color", JSON.stringify(color));
-    localStorage.setItem("count", JSON.stringify(count));
-
+    window.sessionStorage.setItem("color", JSON.stringify(color));
+    window.localStorage.setItem("count", JSON.stringify(count));
   }, [color,count]);
 
   return (
     <div>
       <DisplayMessage color={color} />
-      <Clock time={new Date().toLocaleTimeString()} />
-      <button
-        onClick={() => {
-          setColor(toggle(color));
-          setCount(count + 1);
-        }}
-      >
-        Click me React
-      </button>
-      <p>count:{count}</p>
+      <Clock />
+      <p>{count}</p>
+      <UserActions 
+        setColor = {setColor}
+        setCount = {setCount}
+        color = {color}
+        count = {count}
+        />
+    
     </div>
   );
 }
 
 //写法二
-class Main2 extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      color: "blue",
-      count: 0,
-    };
-  }
+// class Main2 extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       color: "blue",
+//       count: 0,
+//     };
+//   }
 
-  updateColorAndCount = () => {
-    const newColor = this.state.color === "blue" ? "red" : "blue";
-    const newCount = this.state.count + 1;
+//   updateColorAndCount = () => {
+//     const newColor = this.state.color === "blue" ? "red" : "blue";
+//     const newCount = this.state.count + 1;
 
-    this.setState({
-      color: newColor,
-      count: newCount,
-    });
-  };
+//     this.setState({
+//       color: newColor,
+//       count: newCount,
+//     });
+//   };
 
-  render() {
-    return (
-      <div>
-        <DisplayMessage color={this.state.color} />
-        <Clock time={new Date().toLocaleTimeString()} />
-        <button onClick={this.updateColorAndCount}>Click me React</button>
-        <p>{this.state.count}</p>
-      </div>
-    );
-  }
-}
+//   render() {
+//     return (
+//       <div>
+//         <DisplayMessage color={this.state.color} />
+//         <Clock time={new Date().toLocaleTimeString()} />
+//         <button onClick={this.updateColorAndCount}>Click me React</button>
+//         <p>{this.state.count}</p>
+//       </div>
+//     );
+//   }
+// }
 
 function toggle(color) {
   if (color === "blue") {
@@ -79,8 +77,47 @@ function DisplayMessage(props) {
 }
 
 //props
-function Clock(props) {
-  return <p>React Clock:{props.time}</p>;
+function Clock() {
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
+
+  useEffect( () => {
+    const interval = setInterval(
+        () => setTime(new Date().toLocaleTimeString()),1000
+    );
+    return() => {
+      clearInterval(interval);
+    }
+  }, [time]);
+  
+  return <p>React Clock: {time}</p> ;
+}
+
+function UserActions(props) {
+
+  //button will toggle the counter and the count...
+
+  // and update both states via callbacks
+
+  return (
+
+    <button
+
+      onClick={() => {
+
+        props.setColor(toggle(props.color));
+
+        props.setCount(props.count + 1);
+
+      }}
+
+    >
+
+      click me React using function
+
+    </button>
+
+  );
+
 }
 
 export default App;
