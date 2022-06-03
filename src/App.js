@@ -4,15 +4,15 @@ import React from 'react';
 
 function App() {
   const [color, setColor] = React.useState(
-    JSON.parse(sessionStorage.getItem("color")) || "blue"
+    JSON.parse(window.sessionStorage.getItem("color")) || "blue"
 );
 const [count, setCount] = React.useState(
-    JSON.parse(localStorage.getItem("count")) || 0
+    JSON.parse(window.localStorage.getItem("count")) || 0
   );
 
   React.useEffect(() => {
     sessionStorage.setItem("color", JSON.stringify(color));
-localStorage.setItem("count", JSON.stringify(count));
+    localStorage.setItem("count", JSON.stringify(count));
 
   }, [color,count]);
 
@@ -82,7 +82,5 @@ function DisplayMessage(props) {
 function Clock(props) {
   return <p>React Clock:{props.time}</p>;
 }
-
-root.render(<Main />);
 
 export default App;
