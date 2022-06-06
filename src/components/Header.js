@@ -1,16 +1,35 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { NavLink} from "react-router-dom";
+import HomeButton from './HomeButton';
+import "./Header.css";
+import NavButton from "./NavButton";
 
 function Header(){
+
     return(
         <div>
-
-        <Link to="/">Home </Link>
-        <Link to="/about" >About</Link>
-        <Link to="/contact" >Contact</Link>
-
-        </div>
-
+            <div>
+                <HomeButton />
+            </div>
+            <div>
+                <NavButton to="/"  />
+                <NavLink 
+                    to="/about" 
+                    style={({ isActive }) =>
+                    isActive ? { color: "orange" } : { color: "blue" }
+                    }
+                >
+                    About
+                </NavLink>
+                <NavLink 
+                    to="/contact"          
+                    className={({ isActive }) =>
+                    isActive ? "link-active" : "link-inactive"       
+                    }
+                >Contact
+                </NavLink>
+             </div>      
+        </div>    
     );
 }
 

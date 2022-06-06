@@ -1,0 +1,8 @@
+.link-active{
+    color:red;
+}
+
+.link-inactive{
+    color:black;
+    background:yellowgreen
+}
