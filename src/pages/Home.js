@@ -1,12 +1,13 @@
 import React from 'react';
-import { CounterDisplay } from './CounterDisplay';
-import { DisplayMessage } from './DisplayMessage';
-import { Clock } from './Clock';
-import { UserActions } from './UserActions';
+import { CounterDisplay } from '../components/CounterDisplay';
+import { DisplayMessage } from '../components/DisplayMessage';
+import { Clock } from '../components/Clock';
+import { UserActions } from '../components/UserActions';
 
 
-
-export function Main() {
+// JSON.parse(string) 将jsonStr转换成JavaScript 对象
+// JSON.stringify(obj) JavaScript对象 转换成json字符串
+export function Home() {
   const [color, setColor] = React.useState(
     JSON.parse(window.sessionStorage.getItem("color")) || "blue"
   );
@@ -17,7 +18,7 @@ export function Main() {
   React.useEffect(() => {
     window.sessionStorage.setItem("color", JSON.stringify(color));
     window.localStorage.setItem("count", JSON.stringify(count));
-  }, [color, count]);
+  }, [ color, count]);
 
   return (
     <div>
@@ -32,3 +33,5 @@ export function Main() {
     </div>
   );
 }
+
+export default Home;

@@ -12,8 +12,7 @@ export function UserActions(props) {
   }
 
   return (
-    <button onClick = {handleOnClick}
-    >
+    <button onClick = {handleOnClick} >
       click me React using function
     </button>
   );
