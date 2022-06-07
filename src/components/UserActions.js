@@ -5,7 +5,7 @@ export function UserActions(props) {
   // and update both states via callbacks
 
   const handleOnClick = () =>{
-
+    
     props.setColor(props.color === "blue" ? "red" :"blue");
     props.setCount(props.count + 1);
 

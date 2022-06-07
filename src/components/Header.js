@@ -15,8 +15,8 @@ function Header(){
                 <NavButton to="/"  />
                 <NavLink 
                     to="/about" 
-                    style={({ isActive }) =>
-                    isActive ? { color: "orange" } : { color: "blue" }
+                    className={({ isActive }) =>
+                    isActive ? "link-active" : "link-inactive"    //{ color: "orange" } : { color: "blue" }
                     }
                 >
                     About

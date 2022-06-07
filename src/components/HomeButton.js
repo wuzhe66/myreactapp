@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
+// import { Button } from "react-bootstrap";
+import Button from "@mui/material/Button";
 
 function HomeButton(){
 
@@ -13,7 +15,10 @@ function HomeButton(){
 
 return(
     <div style={{ flexDirection: "row", direction: "rtl" }}>
-      <button onClick={handleNavigate}>Home</button>
+      {/* <Button variant="primary" onClick={handleNavigate}>Home BootStrap</Button> */}
+
+      <Button variant="contained" color="primary" onClick={handleNavigate}>Home Mui</Button>
+
     </div>
 )
 
