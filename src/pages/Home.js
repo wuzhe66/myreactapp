@@ -3,6 +3,7 @@ import { CounterDisplay } from '../components/CounterDisplay';
 import { DisplayMessage } from '../components/DisplayMessage';
 import { Clock } from '../components/Clock';
 import { UserActions } from '../components/UserActions';
+import DbData from '../components/DbData';
 
 
 // JSON.parse(string) 将jsonStr转换成JavaScript 对象
@@ -29,9 +30,11 @@ export function Home() {
 
   return (
     <div>
+            
       <DisplayMessage color={color} message="Hello React Native" />
       <Clock />
       <CounterDisplay count={count} />
+      <DbData />
       <UserActions
         setColor={setColor}
         setCount={setCount}
